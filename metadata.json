@@ -1,0 +1,6 @@
+{
+  "name": "JanceD",
+  "description": "Góc nhỏ lưu trữ và trải nghiệm các bot nhân vật AI Dark Romance, Ngược luyến của JanceD với tông màu Đen & Đỏ.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
