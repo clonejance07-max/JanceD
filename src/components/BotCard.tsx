@@ -18,6 +18,7 @@ export function BotCard({ bot, onClick }: BotCardProps) {
     imgDims?.w,
     imgDims?.h
   );
+  const baseScale = bot.cardAvatarScale || 1;
 
   return (
     <button
@@ -43,7 +44,11 @@ export function BotCard({ bot, onClick }: BotCardProps) {
             }
           }}
           onError={() => setImgError(true)}
-          style={{ objectPosition }}
+          style={{
+            objectPosition,
+            transformOrigin: '55% 28%',
+            transform: baseScale > 1 ? `scale(${baseScale})` : undefined
+          }}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       ) : (

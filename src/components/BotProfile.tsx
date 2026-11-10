@@ -185,7 +185,14 @@ export function BotProfile({ botId, onBack }: BotProfileProps) {
                     setImgDims({ w: el.naturalWidth, h: el.naturalHeight });
                   }
                 }}
-                style={{ objectPosition: avatarObjectPosition }}
+                style={{
+                  objectPosition: avatarObjectPosition,
+                  transformOrigin: '55% 28%',
+                  transform:
+                    bot.avatarScale && bot.avatarScale > 1
+                      ? `scale(${bot.avatarScale})`
+                      : undefined
+                }}
                 className="w-full h-full object-cover"
               />
             </div>

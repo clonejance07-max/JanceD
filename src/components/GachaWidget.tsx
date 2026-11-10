@@ -167,7 +167,12 @@ export function GachaWidget({ onSelectBot }: GachaWidgetProps) {
                             objectPosition: getAvatarObjectPosition(
                               currentBot,
                               'circle'
-                            )
+                            ),
+                            transformOrigin: '55% 28%',
+                            transform:
+                              currentBot.avatarScale && currentBot.avatarScale > 1
+                                ? `scale(${currentBot.avatarScale})`
+                                : undefined
                           }}
                           className="w-full h-full object-cover"
                         />

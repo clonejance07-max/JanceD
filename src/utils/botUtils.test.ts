@@ -12,29 +12,30 @@ import {
 import { BOTS_DATA, UPCOMING_BOTS } from '../data/bots';
 import { PLAYLIST_SONGS } from '../data/songs';
 
-test('UPCOMING_BOTS is empty and BOTS_DATA contains 4 characters', () => {
+test('UPCOMING_BOTS is empty and BOTS_DATA contains 5 characters', () => {
   assert.equal(UPCOMING_BOTS.length, 0);
   const all = filterAndSortBots(BOTS_DATA, '', null);
-  assert.equal(all.length, 4);
-  assert.equal(all[0].id, 'kim-seung-ho');
-  assert.equal(all[0].name, 'Kim Seung-ho');
+  assert.equal(all.length, 5);
+  assert.equal(all[0].id, 'hoac-kinh');
+  assert.equal(all[0].name, 'Hoắc Kình');
   assert.equal(
     all[0].link,
-    'https://aistudio.google.com/u/5/prompts/12Qf8HLj2CO3orSZQRdkZdw_x6ypYUHZd'
+    'https://aistudio.google.com/u/5/prompts/16ybPvae--U21tgVpGvhitGRGlQ7TVBZw'
   );
-  assert.equal(all[0].avatar, '/assets/aistudio/IMG_9246_1f1f4660.jpeg');
-  assert.equal(all[1].id, 'tham-da-than');
-  assert.equal(all[2].id, 'tieu-huyen-duc');
-  assert.equal(all[3].id, 'tan-vong-canh');
+  assert.equal(all[0].avatar, '/assets/aistudio/IMG_9234_6aefc2b9.jpeg');
+  assert.equal(all[1].id, 'kim-seung-ho');
+  assert.equal(all[2].id, 'tham-da-than');
+  assert.equal(all[3].id, 'tieu-huyen-duc');
+  assert.equal(all[4].id, 'tan-vong-canh');
 });
 
 test('filterAndSortBots filters by search query on name and tags', () => {
-  const byName = filterAndSortBots(BOTS_DATA, 'Kim Seung-ho', null);
+  const byName = filterAndSortBots(BOTS_DATA, 'Hoắc Kình', null);
   assert.equal(byName.length, 1);
-  assert.equal(byName[0].id, 'kim-seung-ho');
+  assert.equal(byName[0].id, 'hoac-kinh');
 
-  const byTag = filterAndSortBots(BOTS_DATA, 'Enigma', null);
-  assert.equal(byTag.some((b) => b.name === 'Kim Seung-ho'), true);
+  const byTag = filterAndSortBots(BOTS_DATA, 'Hắc đạo', null);
+  assert.equal(byTag.some((b) => b.name === 'Hoắc Kình'), true);
 
   const noMatch = filterAndSortBots(BOTS_DATA, 'Không tồn tại', null);
   assert.equal(noMatch.length, 0);
@@ -44,13 +45,13 @@ test('filterAndSortBots filters by selectedTag accurately', () => {
   const coTrangBots = filterAndSortBots(BOTS_DATA, '', 'Cổ trang');
   assert.equal(coTrangBots.length, 2);
   const hienDaiBots = filterAndSortBots(BOTS_DATA, '', 'Hiện đại');
-  assert.equal(hienDaiBots.length, 2);
-  assert.equal(hienDaiBots[0].id, 'kim-seung-ho');
+  assert.equal(hienDaiBots.length, 3);
+  assert.equal(hienDaiBots[0].id, 'hoac-kinh');
 });
 
 test('getRecommendedBots returns recommended characters', () => {
   const rec = getRecommendedBots(BOTS_DATA);
-  assert.equal(rec.length, 4);
+  assert.equal(rec.length, 5);
   assert.equal(rec.every((b) => b.isRecommended), true);
 });
 
@@ -77,10 +78,10 @@ test('pickHexagram and pickRandomBot return valid items across boundary values',
   assert.ok(firstHex.name.includes('Quẻ'));
   assert.ok(lastHex.name.includes('Quẻ'));
 
-  const firstBot = pickRandomBot(BOTS_DATA, 0.1);
-  const fourthBot = pickRandomBot(BOTS_DATA, 0.9);
+  const firstBot = pickRandomBot(BOTS_DATA, 0.05);
+  const fifthBot = pickRandomBot(BOTS_DATA, 0.95);
   assert.equal(firstBot?.id, 'tan-vong-canh');
-  assert.equal(fourthBot?.id, 'kim-seung-ho');
+  assert.equal(fifthBot?.id, 'hoac-kinh');
 });
 
 test('parseBoldMarkdown splits **bold** segments accurately', () => {
